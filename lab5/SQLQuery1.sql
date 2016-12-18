@@ -1,0 +1,61 @@
+DROP DATABASE calculatoare;
+
+CREATE DATABASE calculatoare;
+GO;
+use calculatoare;
+CREATE TABLE imprimante
+(Cod INT NOT NULL, 
+ Model VARCHAR(4) NOT NULL,
+ Color CHAR(2) NOT NULL,
+ Tip VARCHAR(6) NOT NULL,
+ Pret FLOAT NOT NULL,
+ PRIMARY KEY(Cod));
+ GO;
+ CREATE TABLE laptop_uri
+(Cod INT NOT NULL, 
+ Model VARCHAR(4) NOT NULL,
+ Viteza DECIMAL(3,0) NOT NULL,
+ Ram DECIMAL(3,0) NOT NULL,
+ Hd DECIMAL(2,0) NOT NULL,
+ Pret FLOAT NOT NULL,
+ Ecran INT NOT NULL, 
+ PRIMARY KEY(Cod));
+  GO;
+ CREATE TABLE pc_uri
+(Cod INT NOT NULL, 
+ Model VARCHAR(4) NOT NULL,
+ Viteza DECIMAL(3,0) NOT NULL,
+ Ram DECIMAL(3,0) NOT NULL,
+ Hd DECIMAL(2,0) NOT NULL,
+ Cd VARCHAR(3) NOT NULL,
+ Pret FLOAT NOT NULL,
+ PRIMARY KEY(Cod));
+  GO;
+ CREATE TABLE produse
+(Producator CHAR NOT NULL, 
+ Model VARCHAR(4) NOT NULL,
+ Tip VARCHAR(10) NOT NULL,
+ PRIMARY KEY(Producator));
+
+
+CREATE TABLE imprimante_stoc
+(Cod INT NOT NULL, 
+ Model VARCHAR(4) NOT NULL,
+ Color CHAR(2) NOT NULL,
+ Tip VARCHAR(6) NOT NULL,
+ Pret FLOAT NOT NULL,
+ PRIMARY KEY(Cod));
+ 
+SELECT * FROM imprimante_stoc
+
+INSERT INTO imprimante_stoc
+SELECT * FROM imprimante;
+
+INSERT INTO produse(Producator, Model, Tip) VALUES ('Z', 4003, 'Imprimante'), ('Z', 4001, 'PC'), ('Z', 4002, 'Laptop_uri');
+
+ALTER TABLE pc_uri ADD DEFAULT 32 FOR Ram;
+ALTER TABLE pc_uri ADD DEFAULT 5 FOR Hd;
+ALTER TABLE pc_uri ADD DEFAULT '12x' FOR Cd;
+ALTER TABLE pc_uri ALTER COLUMN Viteza DECIMAL(4,0);
+
+INSERT INTO pc_uri(Cod, Model, Viteza, Pret) VALUES (22, 4444, 1200, 1350);
